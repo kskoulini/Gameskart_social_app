@@ -3,9 +3,13 @@ from pymongo import MongoClient
 from threading import Thread
 import math
 import numpy as np
+from flask_cors import CORS, cross_origin
 
 # Flask app setup
 app = Flask(__name__)
+CORS = CORS(app)
+
+# app.config['CORS_HEADERS'] = 'Content-Type'
 
 # MongoDB Connection
 client = MongoClient('mongodb://localhost:27017/')

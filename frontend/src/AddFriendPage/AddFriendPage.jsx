@@ -10,13 +10,22 @@ const AddFriendPage = (props) => {
     const [userId, setUserId] = useState(0);
 
     const getFriendsHandler = () => {
-        if(userId > -1){
-            setData([
-                [20, 0.024999999999999467, 0], 
-                [6, 0.128571428571429, 0], 
-                [7, 0.22500000000000053, 0], 
-                [14, 0.3200000000000003, 0], 
-                [18, 0.47499999999999964, 0]])
+
+
+        if(userId > 0){
+            const requestOptions = {
+                method: "GET",
+                redirect: "follow"
+              };
+              
+              fetch(`http://localhost:5000/find_friends?user_id=${userId}`, requestOptions)
+                .then((response) => response.text())
+                .then((result) => {
+                    console.log(JSON.parse(result)['friends'])
+                    setData([...JSON.parse(result)['friends']])
+                })
+                .catch((error) => console.error(error));
+    
         };
     }
 
