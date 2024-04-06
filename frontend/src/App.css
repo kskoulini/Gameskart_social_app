@@ -1,0 +1,29 @@
+*, *::before, *::after{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: "Work Sans", sans-serif;
+  font-optical-sizing: auto;
+  color: white;
+}
+
+html, body { 
+  scroll-behavior: smooth
+}
+
+body {
+  background-color: black;
+  width: 100vw;
+  min-height: 100vh;
+  /* scroll-margin-top: 60px; */
+}
+
+body *{
+  scroll-margin-top: 64px;
+}
+
+@media only screen and (max-width: 440px){
+  body *{
+    scroll-margin-top: 130px;
+  }
+}

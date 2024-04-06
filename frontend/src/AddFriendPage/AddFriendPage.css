@@ -1,0 +1,12 @@
+.add-friend-section{
+    width: 100vw;
+    min-height: calc(100vh-64px);
+    height: max-content;
+    padding: 40px;
+}
+
+.add-friend-section h1{
+    color: white;
+    margin-bottom: 32px;
+    font-weight: 600;
+}

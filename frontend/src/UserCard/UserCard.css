@@ -1,0 +1,68 @@
+.user-card {
+    height: 200px;
+    width: 200px;
+    /* background-image: linear-gradient(#513AF1, #000000); */
+    background-image: linear-gradient(#661673, #000000);
+    /* border: solid #513AF1 1px; */
+    border: solid #661673 1px;
+    padding: 10px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.user-details {
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+span.user-name {
+    font-size: 32px;
+    font-weight: 500;
+}
+
+span.user-location {
+    font-size: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 6px;
+    padding: 4px 0px;
+}
+
+button.add-friend-btn {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 120px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0px;
+    margin-top: 8px;
+    margin-right: 8px;
+    column-gap: 6px;
+    justify-content: end;
+}
+
+button.add-friend-btn span{
+    display: none;
+}
+
+button.add-friend-btn:focus,
+button.add-friend-btn:hover{
+    cursor: pointer;
+}
+
+button.add-friend-btn:focus span,
+button.add-friend-btn:hover span{
+    display: block;
+}
+
+button.add-friend-btn:focus svg path,
+button.add-friend-btn:hover svg path{
+    stroke: white;
+}
