@@ -1,33 +1,34 @@
-import React from "react";
+import React,{useEffect, useState} from "react";
 import './AddFriendPage.css';
 
 import GameRow from "./GameRow/GameRow";
 
 const AddFriendPage = (props) => {
 
-    const gameData = {
-        'Tic Tac Toc': 8,
-        'Worlde': 8,
-        'MineCraft': 8,
-        'CounterStrike': 8,
-        'Dota': 8,
-        'Chess': 8,
-        'Ludo': 8,
-        'Rummy': 8,
-        'Poker': 8,
-        'Call of Duty': 8,
-    }
+    const [data, setData] = useState([]);
 
+    const [userId, setUserId] = useState(0);
+
+    const getFriendsHandler = () => {
+        if(userId > -1){
+            setData([
+                [20, 0.024999999999999467, 0], 
+                [6, 0.128571428571429, 0], 
+                [7, 0.22500000000000053, 0], 
+                [14, 0.3200000000000003, 0], 
+                [18, 0.47499999999999964, 0]])
+        };
+    }
 
     return(
         <section id="add-friends" className="add-friend-section">
             <h1>Find your friends</h1>
             <div className="location-input">
-                <input type="text" placeholder="Enter location" />
-                <button type="submit">Go</button>
+                <input type="text" placeholder="Enter location" onKeyUp={(event) => setUserId(Number(event.target.value))} />
+                <button type="submit" onClick={getFriendsHandler}>Go</button>
             </div>
             <section className="friends-display">
-                <GameRow></GameRow>
+                <GameRow data={data}></GameRow>
             </section>
         </section>
     )

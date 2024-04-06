@@ -3,14 +3,7 @@ import './GameRow.css';
 
 import UserCard from '../../UserCard/UserCard';
 
-const GameRow = (props) => {
-
-    const [data, setData] = useState([
-        [20, 0.024999999999999467, 0], 
-        [6, 0.128571428571429, 0], 
-        [7, 0.22500000000000053, 0], 
-        [14, 0.3200000000000003, 0], 
-        [18, 0.47499999999999964, 0]])
+const GameRow = ({data}) => {
 
     const printFriendsHandler = () => {
         const friends = [];
@@ -21,10 +14,6 @@ const GameRow = (props) => {
 
         return friends;
     }
-
-    useEffect(() => {
-
-    })
 
     return(
         <div className="game-row">
