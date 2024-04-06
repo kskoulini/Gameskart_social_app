@@ -1,6 +1,15 @@
+from flask import Flask, request, jsonify
 from pymongo import MongoClient
+from threading import Thread
 import math
 import numpy as np
+
+# Flask app setup
+app = Flask(__name__)
+
+# MongoDB Connection
+client = MongoClient('mongodb://localhost:27017/')
+
 
 def haversine(coord1, coord2):
     R = 6371  # Earth radius in kilometers
@@ -40,9 +49,25 @@ def find_friends(user_id, client):
     potential_friends.sort(key=lambda x: (x[1], x[2]))  # Sort by skill difference and distance
     return potential_friends[:5]
 
-# MongoDB Connection
-client = MongoClient('mongodb://localhost:27017/')
+@app.route('/find_friends', methods=['GET'])
+def get_friends():
+    user_id = int(request.args.get('user_id'))
+    print(user_id)
+    if not user_id:
+        return jsonify({"error": "No user_id provided in the headers"}), 400
 
-# Example usage
-top_5_friends = find_friends(int(input("Enter the user id: ")), client)
-print(top_5_friends)
+    try:
+        user_id = int(user_id)
+        friends = find_friends(user_id, client)
+        return jsonify({"user_id": user_id, "friends": friends})
+    except ValueError:
+        return jsonify({"error": "Invalid user_id format"}), 400
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+# Function to run the Flask app
+def run_app():
+    app.run(port=5000, debug=False)
+
+# # Running the Flask app in a separate thread
+flask_thread = Thread(target=run_app)
+flask_thread.start()
